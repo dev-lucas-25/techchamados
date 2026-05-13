@@ -1,0 +1,7 @@
+{
+  "name": "techchamados",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
