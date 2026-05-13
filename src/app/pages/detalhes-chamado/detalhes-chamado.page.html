@@ -1,13 +1,80 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>detalhes-chamado</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/lista-chamados"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Chamado</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">detalhes-chamado</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding" color="light">
+  <div *ngIf="chamado">
+    <ion-card class="detail-card">
+      <ion-card-header>
+        <ion-card-subtitle>Chamado #{{ chamado.id }}</ion-card-subtitle>
+        <ion-card-title>{{ chamado.titulo }}</ion-card-title>
+        <div class="badges">
+          <ion-badge [color]="getStatusColor(chamado.status)">{{ chamado.status }}</ion-badge>
+          <ion-badge [color]="getPrioridadeColor(chamado.prioridade)" class="ion-margin-start">{{ chamado.prioridade }}</ion-badge>
+        </div>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label class="ion-text-wrap">
+              <h2>Solicitante</h2>
+              <p>{{ chamado.solicitante }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="chamado.setor">
+            <ion-icon name="business-outline" slot="start"></ion-icon>
+            <ion-label class="ion-text-wrap">
+              <h2>Setor</h2>
+              <p>{{ chamado.setor }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-label class="ion-text-wrap">
+              <h2>Data de Abertura</h2>
+              <p>{{ chamado.dataAbertura | date:'dd/MM/yyyy HH:mm' }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="build-outline" slot="start"></ion-icon>
+            <ion-label class="ion-text-wrap">
+              <h2>Técnico Responsável</h2>
+              <p>{{ chamado.tecnico }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item class="box-description">
+            <ion-label class="ion-text-wrap">
+              <h2>Descrição do Problema</h2>
+              <p class="description-text">{{ chamado.descricao }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item class="box-observation" *ngIf="chamado.observacao">
+            <ion-label class="ion-text-wrap">
+              <h2>Observações do Técnico</h2>
+              <p class="description-text">{{ chamado.observacao }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="action-buttons ion-margin-top" *ngIf="chamado.status !== 'Concluído' && chamado.status !== 'Cancelado'">
+      <ion-button expand="block" color="secondary" shape="round" (click)="atualizarStatus()">
+        <ion-icon slot="start" name="refresh-outline"></ion-icon>
+        Atualizar Status
+      </ion-button>
+    </div>
+  </div>
 </ion-content>

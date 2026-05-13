@@ -1,0 +1,28 @@
+.about-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    margin-bottom: 0.5rem;
+
+    ion-icon {
+      margin-right: 1rem;
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-weight: bold;
+      color: var(--ion-color-dark);
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      color: var(--ion-color-medium);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+  }
+}

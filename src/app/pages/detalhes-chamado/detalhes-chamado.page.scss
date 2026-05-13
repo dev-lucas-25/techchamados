@@ -1,0 +1,58 @@
+.detail-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-top: 1rem;
+
+  ion-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+
+  .badges {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    margin-bottom: 0.5rem;
+
+    ion-icon {
+      color: var(--ion-color-medium);
+      margin-right: 1rem;
+    }
+
+    h2 {
+      font-weight: bold;
+      color: var(--ion-color-dark);
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      color: var(--ion-color-medium);
+      font-size: 1rem;
+    }
+  }
+
+  .box-description, .box-observation {
+    margin-top: 1rem;
+    background: var(--ion-color-light);
+    border-radius: 8px;
+    padding: 1rem;
+    --padding-start: 0;
+
+    .description-text {
+      white-space: pre-wrap;
+      margin-top: 0.5rem;
+      color: var(--ion-color-dark);
+    }
+  }
+
+  .box-observation {
+    background: #fdfae7; // slight yellow for observation
+  }
+}

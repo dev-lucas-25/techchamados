@@ -1,13 +1,63 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>resumo</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Resumo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">resumo</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding" color="light">
+  <div class="header-welcome">
+    <h2>Dashboard</h2>
+    <p>Acompanhamento dos chamados técnicos</p>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <!-- Total -->
+      <ion-col size="6">
+        <ion-card class="stat-card stat-total">
+          <ion-card-content>
+            <ion-icon name="list"></ion-icon>
+            <h2>{{ resumo.total }}</h2>
+            <p>Total</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Abertos -->
+      <ion-col size="6">
+        <ion-card class="stat-card stat-abertos">
+          <ion-card-content>
+            <ion-icon name="folder-open"></ion-icon>
+            <h2>{{ resumo.abertos }}</h2>
+            <p>Abertos</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Concluídos -->
+      <ion-col size="6">
+        <ion-card class="stat-card stat-concluidos">
+          <ion-card-content>
+            <ion-icon name="checkmark-done"></ion-icon>
+            <h2>{{ resumo.concluidos }}</h2>
+            <p>Concluídos</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Urgentes -->
+      <ion-col size="6">
+        <ion-card class="stat-card stat-urgentes">
+          <ion-card-content>
+            <ion-icon name="warning"></ion-icon>
+            <h2>{{ resumo.urgentes }}</h2>
+            <p>Urgentes</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

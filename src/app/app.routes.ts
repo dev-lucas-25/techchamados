@@ -2,17 +2,17 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
     path: 'login',
     loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'menu',
+    loadComponent: () => import('./pages/menu/menu.page').then( m => m.MenuPage)
   },
   {
     path: 'cadastro-chamado',
@@ -23,11 +23,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/lista-chamados/lista-chamados.page').then( m => m.ListaChamadosPage)
   },
   {
-    path: 'detalhes-chamado',
+    path: 'detalhes-chamado/:id',
     loadComponent: () => import('./pages/detalhes-chamado/detalhes-chamado.page').then( m => m.DetalhesChamadoPage)
   },
   {
-    path: 'atualizar-status',
+    path: 'atualizar-status/:id',
     loadComponent: () => import('./pages/atualizar-status/atualizar-status.page').then( m => m.AtualizarStatusPage)
   },
   {

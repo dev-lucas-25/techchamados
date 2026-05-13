@@ -1,13 +1,71 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>cadastro-chamado</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Novo Chamado</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cadastro-chamado</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding" color="light">
+  <ion-card class="form-card">
+    <ion-card-header>
+      <ion-card-title>Dados do Chamado</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      
+      <ion-item>
+        <ion-input label="Solicitante *" labelPlacement="floating" [(ngModel)]="chamado.solicitante" placeholder="Nome do solicitante"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Setor" labelPlacement="floating" [(ngModel)]="chamado.setor" placeholder="Ex: RH, Financeiro"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Título *" labelPlacement="floating" [(ngModel)]="chamado.titulo" placeholder="Breve resumo do problema"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea label="Descrição *" labelPlacement="floating" [(ngModel)]="chamado.descricao" rows="4" placeholder="Detalhes do problema..."></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Prioridade *" labelPlacement="floating" [(ngModel)]="chamado.prioridade">
+          <ion-select-option value="Baixa">Baixa</ion-select-option>
+          <ion-select-option value="Média">Média</ion-select-option>
+          <ion-select-option value="Alta">Alta</ion-select-option>
+          <ion-select-option value="Urgente">Urgente</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Técnico Responsável *" labelPlacement="floating" [(ngModel)]="chamado.tecnico">
+          <ion-select-option *ngFor="let tecnico of tecnicos" [value]="tecnico.nome">{{ tecnico.nome }} ({{ tecnico.especialidade }})</ion-select-option>
+        </ion-select>
+        <ion-note slot="helper" *ngIf="tecnicos.length === 0" color="danger">Nenhum técnico ativo cadastrado.</ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Status" labelPlacement="floating" [(ngModel)]="chamado.status">
+          <ion-select-option value="Aberto">Aberto</ion-select-option>
+          <ion-select-option value="Em atendimento">Em atendimento</ion-select-option>
+          <ion-select-option value="Concluído">Concluído</ion-select-option>
+          <ion-select-option value="Cancelado">Cancelado</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea label="Observação" labelPlacement="floating" [(ngModel)]="chamado.observacao" rows="3" placeholder="Observações adicionais (opcional)"></ion-textarea>
+      </ion-item>
+
+      <div class="action-buttons ion-margin-top">
+        <ion-button expand="block" color="primary" shape="round" (click)="salvar()">
+          <ion-icon slot="start" name="save-outline"></ion-icon>
+          Salvar Chamado
+        </ion-button>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -1,13 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">TechChamados</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <div class="logo-area">
+      <ion-icon name="construct" color="primary"></ion-icon>
+      <h2>Bem-vindo</h2>
+      <p>Sistema de Controle de Chamados Técnicos</p>
+    </div>
+
+    <ion-card class="login-card">
+      <ion-card-content>
+        <ion-item lines="full" class="ion-margin-bottom">
+          <ion-icon name="person-outline" slot="start" color="medium"></ion-icon>
+          <ion-input label="Usuário" labelPlacement="floating" type="text" [(ngModel)]="usuario" placeholder="Digite seu usuário"></ion-input>
+        </ion-item>
+
+        <ion-item lines="full" class="ion-margin-bottom">
+          <ion-icon name="lock-closed-outline" slot="start" color="medium"></ion-icon>
+          <ion-input label="Senha" labelPlacement="floating" type="password" [(ngModel)]="senha" placeholder="Digite sua senha"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" shape="round" color="primary" class="ion-margin-top" (click)="fazerLogin()">
+          Entrar
+          <ion-icon slot="end" name="log-in-outline"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
