@@ -1,11 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>Menu Principal</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="sair()">
-        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +13,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" size-md="4" size-lg="3" *ngFor="let item of menuItems">
-        <ion-card class="menu-card" [routerLink]="item.route">
+        <ion-card class="menu-card" (click)="handleItemClick(item)">
           <ion-card-content>
             <div class="icon-wrapper" [ngClass]="item.color">
               <ion-icon [name]="item.icon"></ion-icon>

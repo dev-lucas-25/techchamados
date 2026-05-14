@@ -98,6 +98,17 @@ export class DadosService {
     this.tecnicos = this.tecnicos.filter(t => t.id !== id);
   }
 
+  temChamadosVinculados(nomeTecnico: string): boolean {
+    return this.chamados.some(c => c.tecnico === nomeTecnico);
+  }
+
+  alterarSituacaoTecnico(id: string, novaSituacao: 'Ativo' | 'Inativo') {
+    const tecnico = this.getTecnicoById(id);
+    if (tecnico) {
+      tecnico.situacao = novaSituacao;
+    }
+  }
+
   // DASHBOARD
   getDashboardResumo() {
     const total = this.chamados.length;

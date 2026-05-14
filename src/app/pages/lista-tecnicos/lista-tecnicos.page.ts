@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, AlertController } from '@ionic/angular';
+import { IonicModule, AlertController, ToastController } from '@ionic/angular';
 import { DadosService } from '../../services/dados.service';
 import { Tecnico } from '../../models/tecnico';
 import { RouterModule } from '@angular/router';
@@ -18,7 +18,8 @@ export class ListaTecnicosPage implements OnInit {
 
   constructor(
     private dadosService: DadosService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -32,7 +33,27 @@ export class ListaTecnicosPage implements OnInit {
     this.tecnicos = this.dadosService.listarTecnicos();
   }
 
-  async confirmarExclusao(id: string) {
+  async alterarSituacao(tecnico: Tecnico) {
+    const novaSituacao = tecnico.situacao === 'Ativo' ? 'Inativo' : 'Ativo';
+    this.dadosService.alterarSituacaoTecnico(tecnico.id, novaSituacao);
+    
+    const toast = await this.toastController.create({
+      message: `Técnico ${novaSituacao.toLowerCase()} com sucesso.`,
+      duration: 2000,
+      color: 'success',
+      position: 'top'
+    });
+    await toast.present();
+    
+    this.carregarTecnicos();
+  }
+
+  podeExcluir(tecnico: Tecnico): boolean {
+    return !this.dadosService.temChamadosVinculados(tecnico.nome);
+  }
+
+  async excluirTecnico(tecnico: Tecnico) {
+
     const alert = await this.alertController.create({
       header: 'Confirmar exclusão',
       message: 'Deseja realmente excluir este técnico?',
@@ -45,7 +66,7 @@ export class ListaTecnicosPage implements OnInit {
           text: 'Excluir',
           role: 'destructive',
           handler: () => {
-            this.dadosService.excluirTecnico(id);
+            this.dadosService.excluirTecnico(tecnico.id);
             this.carregarTecnicos();
           }
         }

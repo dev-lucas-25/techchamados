@@ -15,9 +15,9 @@
     <ion-button routerLink="/cadastro-tecnico" color="tertiary">Novo Técnico</ion-button>
   </div>
 
-  <ion-list class="tecnico-list" *ngIf="tecnicos.length > 0">
-    <ion-item-sliding *ngFor="let tecnico of tecnicos">
-      <ion-item class="tecnico-item">
+  <div class="tecnico-list" *ngIf="tecnicos.length > 0">
+    <ion-card class="tecnico-card" *ngFor="let tecnico of tecnicos" [ngClass]="{'tecnico-inativo': tecnico.situacao === 'Inativo'}">
+      <ion-item class="tecnico-item" lines="none">
         <ion-avatar slot="start" class="initial-avatar">
           <span>{{ tecnico.nome.charAt(0).toUpperCase() }}</span>
         </ion-avatar>
@@ -32,13 +32,24 @@
         </ion-badge>
       </ion-item>
 
-      <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="confirmarExclusao(tecnico.id)">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+      <div class="action-buttons">
+        <ion-button size="small" fill="outline" color="warning" *ngIf="tecnico.situacao === 'Ativo'" (click)="alterarSituacao(tecnico)">
+          <ion-icon slot="start" name="power"></ion-icon>
+          Desativar
+        </ion-button>
+        
+        <ion-button size="small" fill="outline" color="success" *ngIf="tecnico.situacao === 'Inativo'" (click)="alterarSituacao(tecnico)">
+          <ion-icon slot="start" name="refresh"></ion-icon>
+          Reativar
+        </ion-button>
+
+        <ion-button size="small" fill="clear" color="danger" *ngIf="podeExcluir(tecnico)" (click)="excluirTecnico(tecnico)">
+          <ion-icon slot="start" name="trash"></ion-icon>
+          Excluir
+        </ion-button>
+      </div>
+    </ion-card>
+  </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/cadastro-tecnico" color="tertiary">

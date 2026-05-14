@@ -18,11 +18,21 @@
 .tecnico-list {
   background: transparent;
   
-  ion-item-sliding {
+  .tecnico-card {
     margin-bottom: 0.5rem;
     border-radius: 12px;
-    overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+    .action-buttons {
+      display: flex;
+      justify-content: flex-start;
+      gap: 0.5rem;
+      padding: 0 1rem 1rem 1rem;
+
+      ion-button {
+        margin: 0;
+      }
+    }
   }
 
   .tecnico-item {
@@ -47,6 +57,15 @@
       color: var(--ion-color-tertiary);
       font-weight: bold;
       font-size: 1.2rem;
+    }
+  }
+
+  .tecnico-inativo {
+    opacity: 0.6;
+    filter: grayscale(100%);
+    
+    h2 {
+      text-decoration: line-through;
     }
   }
 }

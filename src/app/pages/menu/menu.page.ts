@@ -20,11 +20,20 @@ export class MenuPage implements OnInit {
     { title: 'Técnicos', icon: 'people', route: '/lista-tecnicos', color: 'success' },
     { title: 'Resumo', icon: 'pie-chart', route: '/resumo', color: 'warning' },
     { title: 'Sobre', icon: 'information-circle', route: '/sobre', color: 'medium' },
+    { title: 'Sair', icon: 'log-out', action: 'sair', color: 'danger' }
   ];
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  handleItemClick(item: any) {
+    if (item.route) {
+      this.router.navigate([item.route]);
+    } else if (item.action === 'sair') {
+      this.sair();
+    }
   }
 
   sair() {
