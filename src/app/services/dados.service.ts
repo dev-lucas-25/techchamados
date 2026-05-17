@@ -3,7 +3,7 @@ import { Chamado } from '../models/chamado';
 import { Tecnico } from '../models/tecnico';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DadosService {
   private chamados: Chamado[] = [
@@ -16,7 +16,7 @@ export class DadosService {
       prioridade: 'Alta',
       dataAbertura: new Date().toISOString(),
       tecnico: 'Maria',
-      status: 'Aberto'
+      status: 'Aberto',
     },
     {
       id: '2',
@@ -27,8 +27,96 @@ export class DadosService {
       prioridade: 'Média',
       dataAbertura: new Date().toISOString(),
       tecnico: 'Pedro',
-      status: 'Em atendimento'
-    }
+      status: 'Em atendimento',
+    },
+    {
+      id: '3',
+      solicitante: 'Pedro Santos',
+      setor: 'Financeiro',
+      titulo: 'Impressora não imprime',
+      descricao: 'A impressora está sem toner.',
+      prioridade: 'Baixa',
+      dataAbertura: new Date().toISOString(),
+      tecnico: 'Maria',
+      status: 'Concluído',
+    },
+    {
+      id: '4',
+      solicitante: 'Carla Dias',
+      setor: 'Marketing',
+      titulo: 'Configurar e-mail no celular',
+      descricao: 'Preciso configurar o e-mail corporativo no iPhone.',
+      prioridade: 'Média',
+      dataAbertura: new Date().toISOString(),
+      tecnico: 'Pedro',
+      status: 'Concluído',
+    },
+    {
+      id: '5',
+      solicitante: 'Rafael Costa',
+      setor: 'TI',
+      titulo: 'Acesso ao servidor negado',
+      descricao: 'Não consigo acessar a pasta de projetos.',
+      prioridade: 'Urgente',
+      dataAbertura: new Date().toISOString(),
+      tecnico: 'Lucas',
+      status: 'Cancelado',
+    },
+    {
+      id: '6',
+      solicitante: 'Fernanda Lima',
+      setor: 'RH',
+      titulo: 'Erro no sistema de ponto',
+      descricao: 'O sistema está marcando presença duplicada.',
+      prioridade: 'Alta',
+      dataAbertura: new Date().toISOString(),
+      tecnico: 'Maria',
+      status: 'Em atendimento',
+    },
+    {
+      id: '7',
+      solicitante: 'Bruno Alves',
+      setor: 'Financeiro',
+      titulo: 'Sem acesso ao banco',
+      descricao: 'Não consigo conectar ao banco de dados SQL Server.',
+      prioridade: 'Urgente',
+      dataAbertura: new Date().toISOString(),
+      tecnico: 'Pedro',
+      status: 'Aberto',
+    },
+    {
+      id: '8',
+      solicitante: 'Juliana Mendes',
+      setor: 'Administração',
+      titulo: 'Mouse com defeito',
+      descricao: 'O mouse trava o cursor na tela.',
+      prioridade: 'Baixa',
+      dataAbertura: new Date().toISOString(),
+      tecnico: 'Maria',
+      status: 'Concluído',
+    },
+    {
+      id: '9',
+      solicitante: 'Carlos Souza',
+      setor: 'Logística',
+      titulo: 'Instalar impressora fiscal',
+      descricao: 'Preciso instalar a impressora fiscal no caminhão.',
+      prioridade: 'Alta',
+      dataAbertura: new Date().toISOString(),
+      tecnico: 'Marcos',
+      status: 'Em atendimento',
+    },
+    {
+      id: '10',
+      solicitante: 'Patricia Lima',
+      setor: 'Marketing',
+      titulo: 'Problema de iluminação no escritório',
+      descricao: 'A lâmpada de LED do teto queimou.',
+      prioridade: 'Média',
+      dataAbertura: new Date().toISOString(),
+      tecnico: 'Lucas',
+      status: 'Cancelado',
+    },
   ];
 
   private tecnicos: Tecnico[] = [
@@ -37,18 +125,32 @@ export class DadosService {
       nome: 'Maria',
       especialidade: 'Hardware',
       contato: 'maria@empresa.com',
-      situacao: 'Ativo'
+      situacao: 'Ativo',
     },
     {
       id: '2',
       nome: 'Pedro',
       especialidade: 'Software',
       contato: 'pedro@empresa.com',
-      situacao: 'Ativo'
-    }
+      situacao: 'Ativo',
+    },
+    {
+      id: '3',
+      nome: 'Lucas',
+      especialidade: 'Hardware',
+      contato: 'lucas@empresa.com',
+      situacao: 'Ativo',
+    },
+    {
+      id: '4',
+      nome: 'Marcos',
+      especialidade: 'Impressora',
+      contato: 'marcos@empresa.com',
+      situacao: 'Ativo',
+    },
   ];
 
-  constructor() { }
+  constructor() {}
 
   // CHAMADOS
   adicionarChamado(chamado: Chamado) {
@@ -63,11 +165,11 @@ export class DadosService {
   }
 
   getChamadoById(id: string): Chamado | undefined {
-    return this.chamados.find(c => c.id === id);
+    return this.chamados.find((c) => c.id === id);
   }
 
   excluirChamado(id: string) {
-    this.chamados = this.chamados.filter(c => c.id !== id);
+    this.chamados = this.chamados.filter((c) => c.id !== id);
   }
 
   atualizarStatus(id: string, novoStatus: any, observacao: string) {
@@ -91,15 +193,15 @@ export class DadosService {
   }
 
   getTecnicoById(id: string): Tecnico | undefined {
-    return this.tecnicos.find(t => t.id === id);
+    return this.tecnicos.find((t) => t.id === id);
   }
 
   excluirTecnico(id: string) {
-    this.tecnicos = this.tecnicos.filter(t => t.id !== id);
+    this.tecnicos = this.tecnicos.filter((t) => t.id !== id);
   }
 
   temChamadosVinculados(nomeTecnico: string): boolean {
-    return this.chamados.some(c => c.tecnico === nomeTecnico);
+    return this.chamados.some((c) => c.tecnico === nomeTecnico);
   }
 
   alterarSituacaoTecnico(id: string, novaSituacao: 'Ativo' | 'Inativo') {
@@ -112,14 +214,32 @@ export class DadosService {
   // DASHBOARD
   getDashboardResumo() {
     const total = this.chamados.length;
-    const abertos = this.chamados.filter(c => c.status === 'Aberto').length;
-    const cancelados = this.chamados.filter(c => c.status === 'Cancelado').length;
-    const atendimento = this.chamados.filter(c => c.status === 'Em atendimento').length;
-    const concluidos = this.chamados.filter(c => c.status === 'Concluído').length;
-    const baixa = this.chamados.filter(c => c.prioridade === 'Baixa').length;
-    const media = this.chamados.filter(c => c.prioridade === 'Média').length;
-    const alta =this.chamados.filter(c=> c.prioridade ==='Alta').length;
-    const urgentes = this.chamados.filter(c => c.prioridade === 'Urgente').length;
-    return { total, abertos,cancelados ,atendimento,concluidos, baixa,media, alta,urgentes};
+    const abertos = this.chamados.filter((c) => c.status === 'Aberto').length;
+    const cancelados = this.chamados.filter(
+      (c) => c.status === 'Cancelado',
+    ).length;
+    const atendimento = this.chamados.filter(
+      (c) => c.status === 'Em atendimento',
+    ).length;
+    const concluidos = this.chamados.filter(
+      (c) => c.status === 'Concluído',
+    ).length;
+    const baixa = this.chamados.filter((c) => c.prioridade === 'Baixa').length;
+    const media = this.chamados.filter((c) => c.prioridade === 'Média').length;
+    const alta = this.chamados.filter((c) => c.prioridade === 'Alta').length;
+    const urgentes = this.chamados.filter(
+      (c) => c.prioridade === 'Urgente',
+    ).length;
+    return {
+      total,
+      abertos,
+      cancelados,
+      atendimento,
+      concluidos,
+      baixa,
+      media,
+      alta,
+      urgentes,
+    };
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { addIcons } from 'ionicons';
+import { add } from 'ionicons/icons';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, AlertController } from '@ionic/angular';
 import { DadosService } from '../../services/dados.service';
@@ -20,7 +22,11 @@ export class ListaChamadosPage implements OnInit {
     private dadosService: DadosService,
     private router: Router,
     private alertController: AlertController
-  ) { }
+  ) {
+    addIcons({
+       'add-outline': add
+    });
+  }
 
   ngOnInit() {
   }

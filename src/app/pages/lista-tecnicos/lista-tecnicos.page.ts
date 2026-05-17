@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, AlertController, ToastController } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { add} from 'ionicons/icons';
 import { DadosService } from '../../services/dados.service';
 import { Tecnico } from '../../models/tecnico';
 import { RouterModule } from '@angular/router';
@@ -20,7 +22,11 @@ export class ListaTecnicosPage implements OnInit {
     private dadosService: DadosService,
     private alertController: AlertController,
     private toastController: ToastController
-  ) { }
+  ) {
+     addIcons({
+    'add': add
+  });
+   }
 
   ngOnInit() {
   }
