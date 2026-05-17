@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="fecharModal()">
+      <ion-icon
+  name="close-outline"
+  color="light"
+  size="large">
+</ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>
+      Detalhes
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <div class="modal-header-info">
+    <p>Chamados em <strong>{{ status }}</strong>: {{ total }}</p>
+  </div>
+
+  <ion-grid class="modal-grid">
+    <ion-row>
+      <!-- Baixa -->
+      <ion-col size="6" class="ion-text-center">
+        <div class="chart-container">
+          <circle-progress
+            [percent]="getPercent(prioridades.baixa)"
+            [radius]="45"
+            [outerStrokeWidth]="7"
+            [innerStrokeWidth]="7"
+            [space]="-7"
+            [outerStrokeColor]="'#3dc2ff'"
+            [innerStrokeColor]="'#e0e0e0'"
+            [animation]="true"
+            [animationDuration]="500"
+            [title]="prioridades.baixa.toString()"
+            [titleFontSize]="'20'"
+            [titleFontWeight]="'bold'"
+            [titleColor]="'var(--ion-color-dark)'"
+            [showSubtitle]="false"
+            [showUnits]="false"
+          ></circle-progress>
+          <p class="chart-label">Baixa</p>
+        </div>
+      </ion-col>
+
+      <!-- Média -->
+      <ion-col size="6" class="ion-text-center">
+        <div class="chart-container">
+          <circle-progress
+            [percent]="getPercent(prioridades.media)"
+            [radius]="45"
+            [outerStrokeWidth]="7"
+            [innerStrokeWidth]="7"
+            [space]="-7"
+            [outerStrokeColor]="'#ffc409'"
+            [innerStrokeColor]="'#e0e0e0'"
+            [animation]="true"
+            [animationDuration]="500"
+            [title]="prioridades.media.toString()"
+            [titleFontSize]="'20'"
+            [titleFontWeight]="'bold'"
+            [titleColor]="'var(--ion-color-dark)'"
+            [showSubtitle]="false"
+            [showUnits]="false"
+          ></circle-progress>
+          <p class="chart-label">Média</p>
+        </div>
+      </ion-col>
+
+      <!-- Alta -->
+      <ion-col size="6" class="ion-text-center">
+        <div class="chart-container">
+          <circle-progress
+            [percent]="getPercent(prioridades.alta)"
+            [radius]="45"
+            [outerStrokeWidth]="7"
+            [innerStrokeWidth]="7"
+            [space]="-7"
+            [outerStrokeColor]="'#fd8f23'"
+            [innerStrokeColor]="'#e0e0e0'"
+            [animation]="true"
+            [animationDuration]="500"
+            [title]="prioridades.alta.toString()"
+            [titleFontSize]="'20'"
+            [titleFontWeight]="'bold'"
+            [titleColor]="'var(--ion-color-dark)'"
+            [showSubtitle]="false"
+            [showUnits]="false"
+          ></circle-progress>
+          <p class="chart-label">Alta</p>
+        </div>
+      </ion-col>
+
+      <!-- Urgente -->
+      <ion-col size="6" class="ion-text-center">
+        <div class="chart-container">
+          <circle-progress
+            [percent]="getPercent(prioridades.urgente)"
+            [radius]="45"
+            [outerStrokeWidth]="7"
+            [innerStrokeWidth]="7"
+            [space]="-7"
+            [outerStrokeColor]="'#eb445a'"
+            [innerStrokeColor]="'#e0e0e0'"
+            [animation]="true"
+            [animationDuration]="500"
+            [title]="prioridades.urgente.toString()"
+            [titleFontSize]="'20'"
+            [titleFontWeight]="'bold'"
+            [titleColor]="'var(--ion-color-dark)'"
+            [showSubtitle]="false"
+            [showUnits]="false"
+          ></circle-progress>
+          <p class="chart-label">Urgente</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

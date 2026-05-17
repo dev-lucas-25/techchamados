@@ -13,50 +13,130 @@
     <p>Acompanhamento dos chamados técnicos</p>
   </div>
 
-  <ion-grid>
+  <ion-grid class="dashboard-grid">
+    <!-- Seção Geral -->
     <ion-row>
-      <!-- Total -->
-      <ion-col size="6">
-        <ion-card class="stat-card stat-total">
-          <ion-card-content>
-            <ion-icon name="list"></ion-icon>
-            <h2>{{ resumo.total }}</h2>
-            <p>Total</p>
-          </ion-card-content>
-        </ion-card>
+      <ion-col size="12" class="ion-text-center">
+        <div class="chart-container total-container">
+          <h3 class="chart-title">Total de Chamados</h3>
+          <circle-progress
+            [percent]="100"
+            [radius]="80"
+            [outerStrokeWidth]="12"
+            [innerStrokeWidth]="12"
+            [space]="-12"
+            [outerStrokeColor]="'var(--ion-color-primary)'"
+            [innerStrokeColor]="'var(--ion-color-light-shade)'"
+            [animation]="true"
+            [animationDuration]="500"
+            [title]="resumo.total.toString()"
+            [titleFontSize]="'36'"
+            [titleFontWeight]="'bold'"
+            [titleColor]="'var(--ion-color-dark)'"
+            [showSubtitle]="false"
+            [showUnits]="false"
+          ></circle-progress>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div class="section-title">Status</div>
+    <!-- Seção Status -->
+    <ion-row>
+      <!-- Abertos -->
+      <ion-col size="6" size-md="3" class="ion-text-center">
+        <div class="chart-container clickable-card" (click)="abrirModalPrioridades('Aberto')">
+          <circle-progress
+            [percent]="getPercent(resumo.abertos)"
+            [radius]="50"
+            [outerStrokeWidth]="8"
+            [innerStrokeWidth]="8"
+            [space]="-8"
+            [outerStrokeColor]="'#3880ff'"
+            [innerStrokeColor]="'#e0e0e0'"
+            [animation]="true"
+            [animationDuration]="500"
+            [title]="resumo.abertos.toString()"
+            [titleFontSize]="'24'"
+            [titleFontWeight]="'bold'"
+            [titleColor]="'var(--ion-color-dark)'"
+            [showSubtitle]="false"
+            [showUnits]="false"
+          ></circle-progress>
+          <p class="chart-label">Abertos</p>
+        </div>
       </ion-col>
 
-      <!-- Abertos -->
-      <ion-col size="6">
-        <ion-card class="stat-card stat-abertos">
-          <ion-card-content>
-            <ion-icon name="folder-open"></ion-icon>
-            <h2>{{ resumo.abertos }}</h2>
-            <p>Abertos</p>
-          </ion-card-content>
-        </ion-card>
+      <!-- Em Atendimento -->
+      <ion-col size="6" size-md="3" class="ion-text-center">
+        <div class="chart-container clickable-card" (click)="abrirModalPrioridades('Em atendimento')">
+          <circle-progress
+            [percent]="getPercent(resumo.atendimento)"
+            [radius]="50"
+            [outerStrokeWidth]="8"
+            [innerStrokeWidth]="8"
+            [space]="-8"
+            [outerStrokeColor]="'#ffc409'"
+            [innerStrokeColor]="'#e0e0e0'"
+            [animation]="true"
+            [animationDuration]="500"
+            [title]="resumo.atendimento.toString()"
+            [titleFontSize]="'24'"
+            [titleFontWeight]="'bold'"
+            [titleColor]="'var(--ion-color-dark)'"
+            [showSubtitle]="false"
+            [showUnits]="false"
+          ></circle-progress>
+          <p class="chart-label">Em Atendimento</p>
+        </div>
       </ion-col>
 
       <!-- Concluídos -->
-      <ion-col size="6">
-        <ion-card class="stat-card stat-concluidos">
-          <ion-card-content>
-            <ion-icon name="checkmark-done"></ion-icon>
-            <h2>{{ resumo.concluidos }}</h2>
-            <p>Concluídos</p>
-          </ion-card-content>
-        </ion-card>
+      <ion-col size="6" size-md="3" class="ion-text-center">
+        <div class="chart-container clickable-card" (click)="abrirModalPrioridades('Concluído')">
+          <circle-progress
+            [percent]="getPercent(resumo.concluidos)"
+            [radius]="50"
+            [outerStrokeWidth]="8"
+            [innerStrokeWidth]="8"
+            [space]="-8"
+            [outerStrokeColor]="'#2dd36f'"
+            [innerStrokeColor]="'#e0e0e0'"
+            [animation]="true"
+            [animationDuration]="500"
+            [title]="resumo.concluidos.toString()"
+            [titleFontSize]="'24'"
+            [titleFontWeight]="'bold'"
+            [titleColor]="'var(--ion-color-dark)'"
+            [showSubtitle]="false"
+            [showUnits]="false"
+          ></circle-progress>
+          <p class="chart-label">Concluídos</p>
+        </div>
       </ion-col>
 
-      <!-- Urgentes -->
-      <ion-col size="6">
-        <ion-card class="stat-card stat-urgentes">
-          <ion-card-content>
-            <ion-icon name="warning"></ion-icon>
-            <h2>{{ resumo.urgentes }}</h2>
-            <p>Urgentes</p>
-          </ion-card-content>
-        </ion-card>
+      <!-- Cancelados -->
+      <ion-col size="6" size-md="3" class="ion-text-center">
+        <div class="chart-container clickable-card" (click)="abrirModalPrioridades('Cancelado')">
+          <circle-progress
+            [percent]="getPercent(resumo.cancelados)"
+            [radius]="50"
+            [outerStrokeWidth]="8"
+            [innerStrokeWidth]="8"
+            [space]="-8"
+            [outerStrokeColor]="'#eb445a'"
+            [innerStrokeColor]="'#e0e0e0'"
+            [animation]="true"
+            [animationDuration]="500"
+            [title]="resumo.cancelados.toString()"
+            [titleFontSize]="'24'"
+            [titleFontWeight]="'bold'"
+            [titleColor]="'var(--ion-color-dark)'"
+            [showSubtitle]="false"
+            [showUnits]="false"
+          ></circle-progress>
+          <p class="chart-label">Cancelados</p>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
