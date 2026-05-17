@@ -113,9 +113,13 @@ export class DadosService {
   getDashboardResumo() {
     const total = this.chamados.length;
     const abertos = this.chamados.filter(c => c.status === 'Aberto').length;
+    const cancelados = this.chamados.filter(c => c.status === 'Cancelado').length;
+    const atendimento = this.chamados.filter(c => c.status === 'Em atendimento').length;
     const concluidos = this.chamados.filter(c => c.status === 'Concluído').length;
+    const baixa = this.chamados.filter(c => c.prioridade === 'Baixa').length;
+    const media = this.chamados.filter(c => c.prioridade === 'Média').length;
+    const alta =this.chamados.filter(c=> c.prioridade ==='Alta').length;
     const urgentes = this.chamados.filter(c => c.prioridade === 'Urgente').length;
-
-    return { total, abertos, concluidos, urgentes };
+    return { total, abertos,cancelados ,atendimento,concluidos, baixa,media, alta,urgentes};
   }
 }
