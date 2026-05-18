@@ -24,7 +24,7 @@ export class ListaChamadosPage implements OnInit {
     private alertController: AlertController
   ) {
     addIcons({
-       'add-outline': add
+       'add': add
     });
   }
 
